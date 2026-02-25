@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2299">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="zh-TW"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1">&lt;title&gt;誘導公式訓練助手&lt;/title&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>*{box-sizing:border-box;font-family:Microsoft JhengHei,sans-serif}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>body{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>background:#f4f6f8;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>position:relative;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>min-height:100vh;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>margin:0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>padding:20px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>body::before{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>content:"";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>position:absolute;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>top:0;left:0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>width:100%;height:100%;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>background:url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAAAAAAAD/4QBYRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAkSTAAIAAAAEAAAAKgAA/9sAQwAIBgYHBgUIBwcHCQkICgwLDQoKFA4QCg4bHRQdHRQmGi8bLy8uLSoyKyU+RTU+QDg4Pz0/RDpCQj4/RElDRERkPTdPSEhPezW7e3p7O0lERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERH/wgARCAHAAoADAREAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwD5/AAAAAAAAAAAAAAAAAAD/2Q==");</p>
+<p class="p1"><span class="Apple-converted-space">    </span>background-size:cover;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>opacity:0.3;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>z-index:-1;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.card{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>background:rgba(255,255,255,0.93);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>border-radius:16px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>padding:20px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>max-width:480px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>margin:0 auto;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>position:relative;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>z-index:1;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.title{text-align:center;font-size:20px;margin-bottom:12px}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.input-row{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>display:flex;gap:6px;margin-bottom:8px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.input-row input{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>flex:1;padding:8px;border-radius:8px;border:1px solid #ccc;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.level{text-align:center;margin:10px 0;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.level button{padding:8px 12px;margin:0 4px;border-radius:8px;border:none;background:#ccc}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.level .on{background:#378cf9;color:white}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.info{display:flex;justify-content:space-between;margin:10px 0}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.msg{text-align:center;color:red;height:20px}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.q{text-align:center;font-size:22px;margin:16px 0}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>#input{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>width:100%;padding:10px;text-align:center;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>border-radius:10px;border:2px solid #ccc;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-size:18px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.keypad{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>display:grid;grid-template-columns:repeat(4,1fr);gap:8px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>margin:12px 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.key{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>padding:12px;border:none;border-radius:8px;background:#eef2f5;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>font-size:16px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.func{background:#d1f7e5}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.btn-bar{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>display:flex;gap:8px;margin-top:10px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.btn-bar button{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>flex:1;padding:10px;border:none;border-radius:8px;color:white;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.reset{background:#ff6666}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.ok{background:#378cf9}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.luck{background:#ffaa33}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.next{background:#33bb55;display:none}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.upload{background:#7733cc}</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1">&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="title"&gt;誘導公式訓練助手&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="input-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;input id="className" placeholder="班別"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;input id="studentId" placeholder="學號"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;input id="studentName" placeholder="姓名"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="level"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button id="lv1" onclick="setLevel(1)"&gt;程度一&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button id="lv2" onclick="setLevel(2)"&gt;程度二&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="info"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div&gt;分數: &lt;span id="score"&gt;0&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div&gt;連對: &lt;span id="streak"&gt;0&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div&gt;幸運卡: &lt;span id="luck"&gt;0&lt;/span&gt;/2&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="msg" id="msg"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="q" id="q"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;input id="input" readonly&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="keypad"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="key" onclick="insert('+')"&gt;+&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="key" onclick="insert('-')"&gt;-&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="key func" onclick="insert('sin')"&gt;sin&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="key func" onclick="insert('cos')"&gt;cos&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="key func" onclick="insert('tan')"&gt;tan&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="key" onclick="insert('7')"&gt;7&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="key" onclick="insert('8')"&gt;8&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="key" onclick="insert('9')"&gt;9&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="key" onclick="insert('4')"&gt;4&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="key" onclick="insert('5')"&gt;5&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="key" onclick="insert('6')"&gt;6&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="key" onclick="insert('°')"&gt;°&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="key" onclick="insert('1')"&gt;1&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="key" onclick="insert('2')"&gt;2&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="key" onclick="insert('3')"&gt;3&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="key" onclick="insert('0')"&gt;0&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="btn-bar"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="reset" onclick="del()"&gt;清除&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="ok" onclick="check()"&gt;確認&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="luck" onclick="useLuck()"&gt;使用幸運卡&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="upload" onclick="uploadScore()"&gt;上傳分數&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="next" id="nextBtn" onclick="next()"&gt;下一題&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">let score = 0;</p>
+<p class="p1">let streak = 0;</p>
+<p class="p1">let luck = 0;</p>
+<p class="p1">let level = 1;</p>
+<p class="p1">let ans = "";</p>
+<p class="p1">let currentMul = 1;</p>
+<p class="p1">let locked = false;</p>
+<p class="p2"><br></p>
+<p class="p1">// ======================</p>
+<p class="p1">// 👉 貼上你的 Google 網址</p>
+<p class="p1">// ======================</p>
+<p class="p1">const GOOGLE_URL = "https://script.google.com/macros/s/AKfycbxqVyxzWRdqdd42PCeqTc52F4UnFPkhwpnHslg8ALkzeF5RAFHmrton69mHUHdT0gn2/exec";</p>
+<p class="p2"><br></p>
+<p class="p1">const funs = ["sin","cos","tan"];</p>
+<p class="p2"><br></p>
+<p class="p1">function setLevel(n){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>level = n;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>currentMul = 1;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>locked = false;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("lv1").classList.toggle("on",n===1);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("lv2").classList.toggle("on",n===2);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>next();</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function randNonAxis(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const t = Math.floor(Math.random()*3);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t===0) return 95 + 5*Math.floor(Math.random()*16);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t===1) return 185 + 5*Math.floor(Math.random()*16);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return 275 + 5*Math.floor(Math.random()*16);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function randNegShallow(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return -(5 + 5*Math.floor(Math.random()*17));</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function genQ_Level2(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const f = funs[Math.floor(Math.random()*3)];</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const t = Math.floor(Math.random()*3);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>let angle;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t===0){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const a = 10+5*Math.floor(Math.random()*17);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>angle = -360 + a;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>} else if(t===1){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const a = 10+5*Math.floor(Math.random()*17);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>angle = -(90+a);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const a = 10+5*Math.floor(Math.random()*17);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>angle = 180+a;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return calc(f,angle);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function calc(f,angle){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const r = ((angle%360)+360)%360;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>let ref;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(r&lt;=90) ref=r;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>else if(r&lt;=180) ref=180-r;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>else if(r&lt;=270) ref=r-180;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>else ref=360-r;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>let sign="";</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(f==="sin" &amp;&amp; r&gt;180) sign="-";</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(f==="cos" &amp;&amp; (r&gt;90 &amp;&amp; r&lt;270)) sign="-";</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(f==="tan" &amp;&amp; ((r&gt;90&amp;&amp;r&lt;180)||(r&gt;270&amp;&amp;r&lt;360))) sign="-";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>ans = sign + f + ref + "°";</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return angle&lt;0 ? f+"(-"+Math.abs(angle)+"°) = ?" : f+angle+"° = ?";</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function genQ(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const f = funs[Math.floor(Math.random()*3)];</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(level===1){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const angle = Math.random()&lt;0.5 ? randNonAxis() : randNegShallow();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return calc(f,angle);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return genQ_Level2();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function insert(s){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(locked) return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("input").value += s;</p>
+<p class="p1">}</p>
+<p class="p1">function del(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(locked) return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("input").value = "";</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function useLuck(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(locked || luck&lt;1) return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>luck--;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>currentMul = Math.random()&lt;0.5 ? 2 : 3;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>showMsg("幸運卡：×"+currentMul+"倍！");</p>
+<p class="p1"><span class="Apple-converted-space">  </span>next();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>update();</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function next(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>locked = false;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>currentMul = 1;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("nextBtn").style.display = "none";</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("q").innerText = genQ();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>del();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>showMsg("");</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function check(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(locked) return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const u = document.getElementById("input").value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const mul = currentMul;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(u === ans){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>score += mul;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>streak++;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if(streak&gt;=2 &amp;&amp; luck&lt;2){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>luck++;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>streak=0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>showMsg("正確！ +"+mul);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>setTimeout(next,1400);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>score -= mul;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>streak=0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>showMsg("答錯："+ans);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>locked = true;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("nextBtn").style.display = "block";</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>update();</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function showMsg(s){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("msg").innerText = s;</p>
+<p class="p1">}</p>
+<p class="p1">function update(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("score").innerText = score;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("streak").innerText = streak;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("luck").innerText = luck;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ======================</p>
+<p class="p1">// 上傳分數</p>
+<p class="p1">// ======================</p>
+<p class="p1">function uploadScore(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const cname = document.getElementById("className").value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const sid = document.getElementById("studentId").value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const sname = document.getElementById("studentName").value.trim();</p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(!cname || !sid || !sname){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>alert("請填班別、學號、姓名");</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>fetch(GOOGLE_URL,{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>method:"POST",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>body:JSON.stringify({</p>
+<p class="p1"><span class="Apple-converted-space">      </span>className: cname,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>studentId: sid,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>studentName: sname,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>score: score,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>level: level===1?"一":"二",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>luckUsed: 2-luck</p>
+<p class="p1"><span class="Apple-converted-space">    </span>})</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}).then(res=&gt;res.json()).then(data=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>alert(data.msg);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">setLevel(1);</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
