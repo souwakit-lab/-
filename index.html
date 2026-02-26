@@ -121,7 +121,6 @@ let startTime = null;
 let timer = null;
 let lastUpload = 0;
 
-// 已替換成你最新的Google Apps Script後台連結
 const GOOGLE_URL = "https://script.google.com/macros/s/AKfycbzYByidF2uMQfl0QG-Tm7VLHn0ZVVHf590OBjqY0DTaC9ISL8jYNv-W-Kn6EwsWgxQc/exec";
 
 const studentData = {
@@ -323,35 +322,28 @@ function check() {
   update();
 }
 
-function canUpload() { return Date.now() - lastUpload >= 5000; }
 function uploadScore() {
   if (!gameStarted) { alert("請先開始答題"); return; }
-  if (!canUpload()) { alert("上傳過於頻繁，請稍後再試"); return; }
 
-  const cname = document.getElementById("className").value.trim();
-  const sid = document.getElementById("studentId").value.trim();
-  const sname = document.getElementById("studentName").value.trim();
-  const totalSec = getTotalSec();
-  const rate = totalQ === 0 ? 0 : (correctQ / totalQ * 100).toFixed(1);
+  const rateValue = totalQ === 0 ? "0" : (correctQ / totalQ * 100).toFixed(1);
 
   fetch(GOOGLE_URL, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({
-      className: cname,
-      studentId: sid,
-      studentName: sname,
+      className: document.getElementById("className").value.trim(),
+      studentId: document.getElementById("studentId").value.trim(),
+      studentName: document.getElementById("studentName").value.trim(),
       score: score,
       correct: correctQ,
-      rate: rate,
+      rate: rateValue,
       level: level === 1 ? "程度一" : "程度二",
-      timeSec: totalSec
+      timeSec: getTotalSec()
     })
-  }).then(res => res.json()).then(data => {
-    alert("上傳成功！\n分數："+score+"\n答對題數："+correctQ+"\n答對率："+rate+"%");
-    lastUpload = Date.now();
-  }).catch(err => {
-    alert("上傳失敗，請檢查網路或後台連結");
+  }).then(() => {
+    alert("上傳成功！\n班級:"+document.getElementById("className").value+"\n學號:"+document.getElementById("studentId").value+"\n姓名:"+document.getElementById("studentName").value+"\n分數:"+score+"\n答對題數:"+correctQ+"\n答對率:"+rateValue+"%\n難易度:"+(level===1?"程度一":"程度二")+"\n時間:"+getTotalSec()+"秒");
+  }).catch(()=>{
+    alert("上傳失敗");
   });
 }
 </script>
